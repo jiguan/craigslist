@@ -1,0 +1,17 @@
+<div *ngIf="category">
+	 <h2>{{category.name}} details!</h2>
+	 <div><label>id: </label>{{category.id}}</div>
+	 <div>
+	 	<label>name: </label>
+	 	<input [(ngModel)]="category.name" placeholder="name" />
+	 </div>
+	 <div>
+		 <ul class="posts">
+			 <li *ngFor="#post of posts" (click)="gotoPost(post)">
+				 <span class="badge">{{post.id}}</span> {{post.title}}
+			 </li>
+		 </ul>
+	</div>
+	<button (click)="createPost(category.id)">Create a new post</button>
+	<button (click)="goBack()">Back</button>
+</div>
