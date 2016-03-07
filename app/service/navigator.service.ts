@@ -1,4 +1,6 @@
-import {Injectable} from 'angular2/core';
+import { Type, Injectable } from 'angular2/core';
+import { AppComponent } from '../controller/app.component';
+import { RouteRegistry } from 'angular2/router';
 
 //http://blog.mgechev.com/2015/12/30/angular2-router-dynamic-route-config-definition-creation
 @Injectable()
@@ -26,13 +28,13 @@ export class NavigatorService {
             throw new Error('No route metadata attached to the component');
         }
         annotations[routeConfigIndex] = routeConfig;
-        Reflect.defineMetadata('annotations', annotations, AppCmp);
+        Reflect.defineMetadata('annotations', annotations, AppComponent);
     }
     // Adds additional `route` to given `component`
     addRoute(component: Type, route) {
         let routeConfig = this.getRoutes(component);
         routeConfig.configs.push(route);
-        this.updateRoutes(component, routeConfig);
+        this.updateRouteConfig(component, routeConfig);
         this.registry.config(component, route);
     }
 
