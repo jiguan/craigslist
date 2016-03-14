@@ -2,5 +2,7 @@
     <h1>{{post.title}}</h1>
     <p>{{post.detail}}</p>
 </div>
-<button (click)="addComment()">Add comment</button>
-<button (click)="goBack()">Back</button>
+<div collapse-group>
+<button class="btn btn-default" data-toggle="collapse"  data-target="#newComment">Add comment</button>
+<textarea class="form-control" rows="5" class="collapse" id="newComment"></textarea>
+</div>

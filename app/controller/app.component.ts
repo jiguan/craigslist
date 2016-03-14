@@ -2,7 +2,7 @@ import { Component} from 'angular2/core';
 import { CategoryService }     from '../service/category.service';
 // import { NavigatorService }     from '../service/navigator.service';
 import { PostService } from '../service/post.service';
-import { CategoriesComponent } from './categories.component';
+import { MyPostComponent } from './my-post.component';
 import { PostDetailComponent } from './post-detail.component';
 import { NewPostComponent } from './new-post.component';
 import { DashboardComponent } from './dashboard.component';
@@ -15,9 +15,8 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/route
 	template: `
 	  <h1>{{title}}</h1>
 	  <nav>
-	  	<a *ngFor="#route of routes"
-         [routerLink]="route.path">
-		 </a>
+	   <a [routerLink]="['Dashboard']">Dashboard</a>
+	   <a [routerLink]="['MyPost']">My posts</a>
 	  </nav>
 	  <router-outlet></router-outlet>
 	      `,
@@ -26,15 +25,10 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/route
 	providers: [
 		ROUTER_PROVIDERS,
 		CategoryService,
-		PostService,
-		//NavigatorService
+		PostService
 	]
 })
-@RouteConfig([{
-		path: '/categories',
-		name: 'Categories',
-		component: CategoriesComponent
-		},
+@RouteConfig([
 		{
 			path: '/dashboard',
 			name: 'Dashboard',
@@ -55,12 +49,13 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/route
 			path: '/post/:id',
 			name: 'PostDetail',
 			component: PostDetailComponent
+		},
+		{
+			path: '/user/posts',
+			name: 'MyPost',
+			component: MyPostComponent
 		}
 ])
 export class AppComponent {
 	title = 'Tour of Heroes';
-	// routes: Route[];
-	// constructor(private navigatorService: NavigatorService) {
-	// 	 this.routes = navigatorService.getAppRoutes();
-	// }
 }

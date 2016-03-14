@@ -19,7 +19,8 @@ export class CategoryDetailComponent implements OnInit {
 	ngOnInit() {
 		let id = +this._routeParams.get('id');
 		this._categoryService.getCategory(id).then(category => this.category = category);
-		this._postService.getPosts(id).then(posts => this.posts = posts);
+		this._postService.getPostsUnder(id).then(posts => this.posts = posts);
+		  console.log(this._router);
 	}
 	gotoPost(post: Post) {
 		let link = ['PostDetail', { id: post.id }];

@@ -5,7 +5,8 @@ import { Post } from '../model/post';
 
 @Component({
 	selector: 'post-detail',
-	templateUrl: 'app/view/post-detail.component.html'
+	templateUrl: 'app/view/post-detail.component.html',
+    styleUrls: ['app/view/post-detail.component.css']
 })
 
 export class PostDetailComponent implements OnInit {
