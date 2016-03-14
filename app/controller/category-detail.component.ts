@@ -9,7 +9,7 @@ import { Post } from '../model/post';
 @Component({
 	selector: 'category-detail',
 	templateUrl: 'app/view/category-detail.component.html',
-	styleUrls: ['app/view/category-detail.component.css']
+	// styleUrls: ['app/view/category-detail.component.css']
 })
 
 export class CategoryDetailComponent implements OnInit {
@@ -20,7 +20,6 @@ export class CategoryDetailComponent implements OnInit {
 		let id = +this._routeParams.get('id');
 		this._categoryService.getCategory(id).then(category => this.category = category);
 		this._postService.getPostsUnder(id).then(posts => this.posts = posts);
-		  console.log(this._router);
 	}
 	gotoPost(post: Post) {
 		let link = ['PostDetail', { id: post.id }];

@@ -1,5 +1,6 @@
 import {Injectable} from 'angular2/core';
-import {POSTS} from '../model/mock-post-car';
+import { POSTS } from '../model/mock-post-car';
+import { COMMENTS } from '../model/mock-comment';
 import { Post } from '../model/post';
 
 @Injectable()
@@ -14,5 +15,9 @@ export class PostService {
 
 	getPostsOfUser(id: number) {
 		return Promise.resolve(POSTS);
+	}
+
+	getCommentsOfPost(id: number) {
+		return Promise.resolve(COMMENTS).then(cs => cs.filter(comment => comment.post === id));
 	}
 }
