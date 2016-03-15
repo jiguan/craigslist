@@ -5,15 +5,12 @@
         <ul class="list-group comments">
             <li *ngFor="#comment of comments" class="list-group-item">
                 <div>
-                {{comment.id}} - {{comment.comment}}
+                {{comment.comment}}
                 </div>
                 <div> By {{comment.user}} </div>
             </li>
         </ul>
    </div>
-    <create-comment></create-comment>
+    <create-comment [comments]="comments"></create-comment>
     <button class="btn btn-default" (click)="goBack()">Back</button>
-
-
-
 </div>

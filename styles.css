@@ -6,4 +6,6 @@ button { padding: 0.2em; font-size: 14px}
 
 .my-form {
     height: inherit;
+    padding: 10px;
+    margin-top: 20px;
 }
