@@ -3,11 +3,13 @@ import { PostService } from '../service/post.service';
 import { RouteParams } from 'angular2/router';
 import { Post } from '../model/post';
 import { Comment } from '../model/comment';
+import { CreateCommentDirective } from '../direct/create-comment.directive';
 
 @Component({
 	selector: 'post-detail',
 	templateUrl: 'app/view/post-detail.component.html',
-    styleUrls: ['app/view/post-detail.component.css']
+    styleUrls: ['app/view/post-detail.component.css'],
+	directives: [CreateCommentDirective],
 })
 
 export class PostDetailComponent implements OnInit {
