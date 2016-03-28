@@ -1,6 +1,6 @@
 export class Post {
-  id: number;
+  id: string;
   title = "";
   detail = "";
-  category: number;
+  category: string;
 }

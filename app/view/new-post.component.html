@@ -1,0 +1,17 @@
+{{diagnostic}}
+<form  (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="alterEgo">Title: </label>
+      <input type="text" class="form-control" [(ngModel)]="post.title">
+    </div>
+    <div class="form-group">
+      <label for="alterEgo">Detail: </label>
+      <input type="text" class="form-control" [(ngModel)]="post.detail">
+    </div>
+   <button type="submit" class="btn btn-default">
+       <span class="glyphicon glyphicon-ok"></span> Submit
+   </button>
+   <button class="btn btn-default" (click)="goBack()">
+        <span class="glyphicon glyphicon-arrow-left"></span> Back
+   </button>
+</form>

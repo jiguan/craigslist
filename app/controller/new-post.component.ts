@@ -1,4 +1,5 @@
 import { Component } from 'angular2/core';
+import { Router, RouteParams } from 'angular2/router';
 import { Post } from '../model/post';
 
 @Component({
@@ -8,9 +9,14 @@ import { Post } from '../model/post';
 
 export class NewPostComponent {
 	post = new Post();
-	create(post: Post) {
-		this.post = post;
-		console.log(post);
+	constructor(private _router: Router, private _routeParams: RouteParams) {}
+	ngOnInit() {
+		this.post.category = this._routeParams.get('categoryId');
+	}
+	onSubmit() {
+		console.log(this.post);
+		let link = ['CategoryDetail', { id: this.post.category }];
+		this._router.navigate(link);
 	}
 	goBack() {
 		window.history.back();

@@ -11,6 +11,17 @@
             </li>
         </ul>
    </div>
-    <create-comment [comments]="comments"></create-comment>
-    <button class="btn btn-default" (click)="goBack()">Back</button>
+
+   <button class="btn btn-default" (click)="isCollapsed = !isCollapsed">Add a comment</button>
+   <button class="btn btn-default" (click)="goBack()">Back</button>
+   <form (ngSubmit)="addComment()" [collapse]="isCollapsed" class="form-control collapse my-form">
+       <div class="form-group">
+         <label for="alterEgo">Comment: </label>
+         <input type="text" class="form-control" [(ngModel)]="model.comment">
+       </div>
+      <button type="submit" class="btn btn-default">
+          <span class="glyphicon glyphicon-ok"></span> Submit
+      </button>
+   </form>
+
 </div>

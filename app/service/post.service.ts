@@ -5,19 +5,19 @@ import { Post } from '../model/post';
 
 @Injectable()
 export class PostService {
-	getPostsUnder(categoryId: number) {
+	getPostsUnder(categoryId: string) {
 		return Promise.resolve(POSTS);
 	}
-	getPost(id: number) {
+	getPost(id: string) {
 		return Promise.resolve(POSTS).
 			then(posts => posts.filter(post => post.id === id)[0]);
 	}
 
-	getPostsOfUser(id: number) {
+	getPostsOfUser(id: string) {
 		return Promise.resolve(POSTS);
 	}
 
-	getCommentsOfPost(id: number) {
+	getCommentsOfPost(id: string) {
 		return Promise.resolve(COMMENTS).then(cs => cs.filter(comment => comment.post === id));
 	}
 }

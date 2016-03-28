@@ -14,9 +14,6 @@ import { Comment } from '../model/comment';
      <button type="submit" class="btn btn-default">
          <span class="glyphicon glyphicon-ok"></span> Submit
      </button>
-     <button class="btn btn-default" (click)="isCollapsed = !isCollapsed">
-          <span class="glyphicon glyphicon-arrow-left"></span> Cancel
-     </button>
   </form>
   `,
  directives: [Collapse],
@@ -25,10 +22,10 @@ import { Comment } from '../model/comment';
 export class CreateCommentDirective {
     public isCollapsed:boolean = true;
     submitted = false;
-    model = new Comment();
+    model = new Comment('s', 's');
     comments: Comment[];
     onSubmit() {
         this.isCollapsed = true;
-        this.comments.push(this.model);
+        // this.comments.push();
     }
 }

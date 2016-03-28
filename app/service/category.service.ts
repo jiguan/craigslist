@@ -12,7 +12,7 @@ export class CategoryService {
 			setTimeout(()=>resolve(CATEGORIES), 2000) // 2
 					    );
 	}
-	getCategory(id: number) {
+	getCategory(id: string) {
 		return Promise.resolve(CATEGORIES).
 			then(categories => categories.filter(category => category.id === id)[0]);
 	}

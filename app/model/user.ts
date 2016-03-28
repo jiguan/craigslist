@@ -1,6 +1,6 @@
 export class User {
-  id: number;
+  id: string;
   username: string;
-  publishedPosts: number;
-  newComments: number;
+  publishedPosts: string;
+  newComments: string;
 }

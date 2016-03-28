@@ -1,5 +1,5 @@
 import { Component} from 'angular2/core';
-import { CategoryService }     from '../service/category.service';
+import { CategoryService } from '../service/category.service';
 import { UserService } from '../service/user.service';
 import { PostService } from '../service/post.service';
 import { MyPostComponent } from './my-post.component';
@@ -12,14 +12,7 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/route
 
 @Component({
 	selector: 'my-app',
-	template: `
-	  <h1>{{title}}</h1>
-	  <nav>
-	   <a [routerLink]="['Dashboard']">Dashboard</a>
-	   <a [routerLink]="['MyPost']">My posts</a>
-	  </nav>
-	  <router-outlet></router-outlet>
-	      `,
+	templateUrl: 'app/view/app.component.html',
 	styleUrls: ['app/view/app.component.css'],
 	directives: [ROUTER_DIRECTIVES],
 	providers: [

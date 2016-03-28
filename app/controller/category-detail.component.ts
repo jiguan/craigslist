@@ -19,7 +19,7 @@ export class CategoryDetailComponent implements OnInit {
 	posts: Post[];
 	constructor(private _router: Router, private _categoryService: CategoryService, private _postService: PostService, private _routeParams: RouteParams) {}
 	ngOnInit() {
-		let id = +this._routeParams.get('id');
+		let id = this._routeParams.get('id');
 		this._categoryService.getCategory(id).then(category => this.category = category);
 		this._postService.getPostsUnder(id).then(posts => this.posts = posts);
 	}
@@ -27,11 +27,12 @@ export class CategoryDetailComponent implements OnInit {
 		let link = ['PostDetail', { id: post.id }];
 		this._router.navigate(link);
 	}
-	createPost(categoryId: number) {
-		let link = ['NewPost', { id: categoryId }];
+	createPostUnder(category: Category) {
+		let link = ['NewPost', { categoryId: category.id }];
 		this._router.navigate(link);
 	}
 	goBack() {
 		window.history.back();
 	}
+
 }
