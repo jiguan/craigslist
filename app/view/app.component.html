@@ -4,9 +4,10 @@
 </div>
 <div class="row w3-topnav w3-card-2 w3-slim topnav">
 	<input class="col-md-4" type="text" name="searchBox" value="Search">
+	<span class="col-md-4"></span>
 	<a [routerLink]="['Dashboard']" class="w3-hide-small">Dashboard</a>
 <a [routerLink]="['MyPost']" class="w3-hide-small" >My posts</a>
 </div>
-  <div id="container">
+ <div id="container">
   <router-outlet></router-outlet>
   </div>

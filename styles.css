@@ -1,5 +1,5 @@
 h2 { color: #444; font-weight: lighter; }
-body { margin: 2em; }
+body { margin: 1em; }
 body, input[text], button { color: #888; font-family: Cambria, Georgia; }
 button { padding: 0.2em; font-size: 14px}
 * { font-family: Arial; }
@@ -11,10 +11,11 @@ button { padding: 0.2em; font-size: 14px}
 }
 
 .topnav {
-    padding-left: 8px;
+    position: fixed;
 }
 
 .topnav input {
-    margin-top: 6;
+    margin-left: 6px;
+    margin-top: 6px;
     color: #000;
 }
