@@ -20,8 +20,15 @@ export class CategoryDetailComponent implements OnInit {
 	constructor(private _router: Router, private _categoryService: CategoryService, private _postService: PostService, private _routeParams: RouteParams) {}
 	ngOnInit() {
 		let id = this._routeParams.get('id');
-		this._categoryService.getCategory(id).then(category => this.category = category);
-		this._postService.getPostsUnder(id).then(posts => this.posts = posts);
+		this._categoryService.getCategory(id).subscribe(
+			 data => { this.category = data },
+			 err => console.error(err)
+		 );
+
+		this._postService.getPostsUnder(id).subscribe(
+			 data => { this.posts = data },
+			 err => console.error(err)
+		 );
 	}
 	gotoPost(post: Post) {
 		let link = ['PostDetail', { id: post.id }];

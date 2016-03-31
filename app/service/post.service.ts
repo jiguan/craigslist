@@ -2,22 +2,26 @@ import {Injectable} from 'angular2/core';
 import { POSTS } from '../model/mock-post-car';
 import { COMMENTS } from '../model/mock-comment';
 import { Post } from '../model/post';
+import {Http, Response} from 'angular2/http';
 
 @Injectable()
 export class PostService {
+	constructor(private http:Http) { }
 	getPostsUnder(categoryId: string) {
-		return Promise.resolve(POSTS);
+		return this.http.get('http://localhost:8080/api/category/'+categoryId+'/posts/')
+	    .map(res => res.json());
 	}
 	getPost(id: string) {
-		return Promise.resolve(POSTS).
-			then(posts => posts.filter(post => post.id === id)[0]);
+		return this.http.get('http://localhost:8080/api/post/'+id)
+	    .map(res => res.json());
 	}
 
-	getPostsOfUser(id: string) {
+	getPostsOfUser(userId: string) {
 		return Promise.resolve(POSTS);
 	}
 
 	getCommentsOfPost(id: string) {
-		return Promise.resolve(COMMENTS).then(cs => cs.filter(comment => comment.post === id));
+		return this.http.get('http://localhost:8080/api/post/'+id+'/comments/')
+	    .map(res => res.json());
 	}
 }

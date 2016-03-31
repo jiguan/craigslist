@@ -9,13 +9,3 @@ button { padding: 0.2em; font-size: 14px}
     padding: 10px;
     margin-top: 20px;
 }
-
-.topnav {
-    position: fixed;
-}
-
-.topnav input {
-    margin-left: 6px;
-    margin-top: 6px;
-    color: #000;
-}

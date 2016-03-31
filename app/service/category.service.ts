@@ -1,19 +1,19 @@
 import {Injectable} from 'angular2/core';
+import {Http, Response} from 'angular2/http';
 import {CATEGORIES} from '../model/mock-categories';
 import {Category} from '../model/category';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class CategoryService {
+	constructor(private http:Http) { }
 	getCategories() {
-		return Promise.resolve(CATEGORIES);
+	    return this.http.get('http://localhost:8080/api/category/')
+	    .map(res => res.json());
 	}
-	getCategoriesSlowly() {
-		  return new Promise<Category[]>(resolve =>
-			setTimeout(()=>resolve(CATEGORIES), 2000) // 2
-					    );
-	}
+
 	getCategory(id: string) {
-		return Promise.resolve(CATEGORIES).
-			then(categories => categories.filter(category => category.id === id)[0]);
+		return this.http.get('http://localhost:8080/api/category/'+id)
+	    .map(res => res.json());
 	}
 }

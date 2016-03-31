@@ -9,7 +9,58 @@ h2 {
   padding-top: 0;
 }
 
-#container {
-    margin-top: 40px;
-    padding: 20px;
+#title {
+    color:#ffffff;
+    height: 45px;
+    padding: 7px 0px 7px 15px;
+    background-color: #4CAF50;
+}
+
+#searchContainer {
+    background-color: #4CAF50;
+}
+#searchForm {
+    padding: 7px 0px 7px 15px;
+    margin: 0;
+}
+.searchInput{
+    height: 31px;
+    width: 80%;
+    display: inline;
+}
+.searchButton {
+    height: 16px;
+}
+
+/* Fixes submit button height problem in Firefox */
+.searchButton::-moz-focus-inner {
+  border: 0;
+}
+.tfclear{
+    clear:both;
+}
+
+.topnav {
+  position:relative;
+  background-color: #4CAF50;
+  z-index:2;
+  font-size: 17px;
+  color:#f1f1f1;
+  padding:0;
+  letter-spacing:1px;
+}
+.topnav a{
+  text-decoration:none;
+  padding:10px 15px 10px 15px !important;
+  border-bottom:none;
+  display:inline-block;
+}
+.topnav a:hover{
+  border-bottom:none;
+  background-color:#ffffff;
+  color:#4CAF50;
+}
+.topnav a.active {
+  background-color:#73AD21;
+  color:#ffffff;
 }

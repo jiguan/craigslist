@@ -12,8 +12,11 @@ export class DashboardComponent implements OnInit {
 	categories: Category[] = [];
 	constructor(private _router: Router, private _categoryService: CategoryService) { }
 	ngOnInit() {
-		 this._categoryService.getCategories()
-			 .then(categories => this.categories = categories.slice(1,2));
+		 this._categoryService.getCategories().subscribe(
+			  data => { this.categories = data },
+			  err => console.error(err)
+		  );
+
 	}
 	gotoDetail(category: Category){
 		let link = ['CategoryDetail', { id: category.id }];

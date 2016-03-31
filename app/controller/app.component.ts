@@ -8,6 +8,7 @@ import { NewPostComponent } from './new-post.component';
 import { DashboardComponent } from './dashboard.component';
 import { CategoryDetailComponent } from './category-detail.component';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
+import {HTTP_PROVIDERS, Http} from 'angular2/http';
 
 
 @Component({
@@ -17,6 +18,7 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/route
 	directives: [ROUTER_DIRECTIVES],
 	providers: [
 		ROUTER_PROVIDERS,
+		HTTP_PROVIDERS,
 		CategoryService,
 		PostService,
 		UserService
