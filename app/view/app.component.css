@@ -9,6 +9,12 @@ h2 {
   padding-top: 0;
 }
 
+.center {
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+}
+
 #title {
     color:#ffffff;
     height: 45px;

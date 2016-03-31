@@ -25,15 +25,17 @@ export class PostDetailComponent implements OnInit {
 		this._postService.getPost(id).subscribe(
 			 data => { this.post = data },
 			 err => console.error(err)
-		 );;
-		this._postService.getCommentsOfPost(id).subscribe(
-			 data => { this.comments = data },
-			 err => console.error(err)
-		 );;
+		 );
+		 this._postService.getCommentsOfPost(id).then(comments => this.comments = comments);
+
+		// this._postService.getCommentsOfPost(id).subscribe(
+		// 	 data => { this.comments = data },
+		// 	 err => console.error(err)
+		//  );;
 	}
 	addComment() {
 		this.isCollapsed = true;
-		var newComment = new Comment(this.model.id, this.model.user);
+		var newComment = new Comment(this.model.id, this.model.userId);
 		newComment.comment = this.model.comment;
 		this.comments.push(newComment);
 		this.model.comment = '';

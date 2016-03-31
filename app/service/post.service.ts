@@ -21,7 +21,8 @@ export class PostService {
 	}
 
 	getCommentsOfPost(id: string) {
-		return this.http.get('http://localhost:8080/api/post/'+id+'/comments/')
-	    .map(res => res.json());
+		return Promise.resolve(COMMENTS);
+		// return this.http.get('http://localhost:8080/api/post/'+id+'/comments/')
+	    // .map(res => res.json());
 	}
 }

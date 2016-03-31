@@ -1,11 +1,11 @@
 export class Comment {
   id: string;
   comment: string;
-  post: string;
-  user: string;
+  postId: string;
+  userId: string;
 
   public constructor(postId: string, public userId: string) {
-      this.post = postId;
-      this.user = userId;
+      this.postId = postId;
+      this.userId = userId;
   }
 }
