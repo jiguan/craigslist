@@ -2,6 +2,7 @@ import {Component} from "angular2/core";
 import {ROUTER_DIRECTIVES, Router} from "angular2/router";
 import {LoginService} from "../service/login.service";
 
+
 @Component({
   selector: 'login-page',
   templateUrl: 'app/view/login.component.html',
@@ -10,14 +11,16 @@ import {LoginService} from "../service/login.service";
 })
 
 export class LoginComponent {
-  constructor(private router:Router) {
+  email: string = '';
+  password: string = '';
+
+  constructor(private router:Router, private loginService: LoginService) {
   }
 
-  login(email, password) {
-      alert('a');
-    // this.loginService.login(email, password)
+  login() {
+    this.loginService.login(this.email, this.password);
     //   .subscribe(() => {
-    //     this.router.navigate(['/Home']);
+    //     this.router.navigate(['/home']);
     //   }, this.handleError)
     // ;
   }

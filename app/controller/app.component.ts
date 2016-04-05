@@ -3,6 +3,7 @@ import { CategoryService } from '../service/category.service';
 import { UserService } from '../service/user.service';
 import { PostService } from '../service/post.service';
 import { LoginService } from '../service/login.service';
+import { WindowService } from '../service/window.service';
 import { MyPostComponent } from './my-post.component';
 import { PostDetailComponent } from './post-detail.component';
 import { NewPostComponent } from './new-post.component';
@@ -10,9 +11,9 @@ import { RegisterComponent } from './register.component';
 import { DashboardComponent } from './dashboard.component';
 import { LoginComponent } from './login.component';
 import { CategoryDetailComponent } from './category-detail.component';
-import { Http as NgHttp} from '../common/http';
+// import { Http as NgHttp} from '../common/http';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
-import {HTTP_PROVIDERS, Http} from 'angular2/http';
+import {HTTP_PROVIDERS, ConnectionBackend } from 'angular2/http';
 
 
 @Component({
@@ -26,8 +27,10 @@ import {HTTP_PROVIDERS, Http} from 'angular2/http';
 		CategoryService,
 		PostService,
 		UserService,
-		// LoginService,
-		NgHttp
+		LoginService,
+		WindowService,
+		ConnectionBackend
+		// NgHttp
 	]
 })
 @RouteConfig([
