@@ -13,10 +13,10 @@
 	<div class="col-sm-3 topnav w3-right-align"> <!-- links -->
 		<a [routerLink]="['Dashboard']">Dashboard</a>
 		<a [routerLink]="['MyPost']">My posts</a>
-		<a >Log in</a>
+		<a *ngIf="signedIn==true" [routerLink]="['Logout']">Log out</a>
+		<a *ngIf="signedIn==false" [routerLink]="['Login']">Log in</a>
 	</div>
 </div>
  <div id="container" class="center">
-  <router-outlet></router-outlet>
+  <auth-router-outlet></auth-router-outlet>
   </div>
-  <form id="searchForm" method="get" action="http://www.google.com">

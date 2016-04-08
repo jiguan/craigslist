@@ -11,7 +11,8 @@ import { RegisterComponent } from './register.component';
 import { DashboardComponent } from './dashboard.component';
 import { LoginComponent } from './login.component';
 import { CategoryDetailComponent } from './category-detail.component';
-// import { Http as NgHttp} from '../common/http';
+import { Http } from '../common/http';
+import { SecurityRouterOutlet } from '../router/securityRouter';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
 import {HTTP_PROVIDERS, ConnectionBackend } from 'angular2/http';
 
@@ -20,7 +21,7 @@ import {HTTP_PROVIDERS, ConnectionBackend } from 'angular2/http';
 	selector: 'my-app',
 	templateUrl: 'app/view/app.component.html',
 	styleUrls: ['app/view/app.component.css'],
-	directives: [ROUTER_DIRECTIVES],
+	directives: [SecurityRouterOutlet, ROUTER_DIRECTIVES],
 	providers: [
 		ROUTER_PROVIDERS,
 		HTTP_PROVIDERS,
@@ -29,8 +30,8 @@ import {HTTP_PROVIDERS, ConnectionBackend } from 'angular2/http';
 		UserService,
 		LoginService,
 		WindowService,
-		ConnectionBackend
-		// NgHttp
+		ConnectionBackend,
+		Http
 	]
 })
 @RouteConfig([
@@ -42,12 +43,22 @@ import {HTTP_PROVIDERS, ConnectionBackend } from 'angular2/http';
 		},
 		{
 			path: '/home',
-			name: 'Dashboard',
+			name: 'Home',
 			component: DashboardComponent,
 		},
 		{
 			path: '/login',
 			name: 'Login',
+			component: LoginComponent,
+		},
+		{
+			path: '/signup',
+			name: 'Signup',
+			component: LoginComponent,
+		},
+		{
+			path: '/logout',
+			name: 'Logout',
 			component: LoginComponent,
 		},
 		{
@@ -77,5 +88,7 @@ import {HTTP_PROVIDERS, ConnectionBackend } from 'angular2/http';
 		}
 ])
 export class AppComponent {
+	constructor(private _loginService: LoginService) {}
+	signedIn: boolean = this._loginService.isSignedIn();
 	title = 'Tour of Heroes';
 }

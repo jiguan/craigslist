@@ -7,7 +7,8 @@ import { Http as NgHttp,  RequestOptionsArgs, RequestOptions,  Headers,  Respons
 const mergeAuthToken = (options:RequestOptionsArgs) => {
   let newOptions = new RequestOptions({}).merge(options);
   let newHeaders = new Headers(newOptions.headers);
-  newHeaders.set('X-AUTH-TOKEN', localStorage.getItem('jwt'));
+  let access_token = localStorage.getItem('access_token');
+  newHeaders.set('Authorization', 'bearer '+ access_token);
   newHeaders.set('Accept', 'application/json');
   newHeaders.set('Content-Type', 'application/json');
   newOptions.headers = newHeaders;
@@ -20,7 +21,7 @@ export class Http extends NgHttp {
         super(_backend, _defaultOptions);
     }
   get(url:string, options?:RequestOptionsArgs):Observable<Response> {
-    return super.get(url, mergeAuthToken(options));
+      return super.get(url, mergeAuthToken(options));
   }
 
   post(url:string, body:string, options?:RequestOptionsArgs):Observable<Response> {
