@@ -36,7 +36,7 @@ export class LoginComponent {
    }
 
    signup() {
-       
+
    }
 
   handleError(error) {

@@ -13,8 +13,8 @@
 	<div class="col-sm-3 topnav w3-right-align"> <!-- links -->
 		<a [routerLink]="['Dashboard']">Dashboard</a>
 		<a [routerLink]="['MyPost']">My posts</a>
-		<a *ngIf="signedIn==true" [routerLink]="['Logout']">Log out</a>
-		<a *ngIf="signedIn==false" [routerLink]="['Login']">Log in</a>
+		<a *ngIf="signedIn" [routerLink]="['Logout']">Log out</a>
+		<a *ngIf="!signedIn" [routerLink]="['Login']">Log in</a>
 	</div>
 </div>
  <div id="container" class="center">

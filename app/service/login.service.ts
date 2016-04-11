@@ -3,6 +3,7 @@ import {Response, Http} from "angular2/http";
 import { Observable } from 'rxjs/Observable';
 import {Headers} from 'angular2/http';
 import 'rxjs/add/operator/do'
+import { BehaviorSubject } from 'rxjs/Rx';
 // import {Http} from "../common/http";
 
 // https://github.com/springboot-angular2-tutorial/angular2-app/blob/master/src/app/services/LoginService.ts
@@ -10,6 +11,7 @@ import 'rxjs/add/operator/do'
 @Injectable()
 export class LoginService {
 
+  public signedIn: BehaviorSubject<boolean> =  new BehaviorSubject<boolean>(false);
 
   constructor(private http:Http) {
   }
@@ -30,6 +32,7 @@ export class LoginService {
           resp => {
                console.log(resp);
                localStorage.setItem('access_token', resp.json().access_token);
+                this.signedIn.next(true);
            }
      );
   }
@@ -39,14 +42,21 @@ export class LoginService {
    }
 
   logout():Observable<Response> {
-      if(this.isSignedIn()) {
-          return this.http.post('http://localhost:8080/oauth/revoke-token', '');
+      return this.http.post('http://localhost:8080/oauth/revoke-token', '')
+      .do(
+          resp => {
+              localStorage.removeItem('access_token');
+              this.signedIn.next(false);
+           }
+     );
+  }
+  refresh(): void {
+      if(localStorage.getItem('access_token') !== null) {
+          this.signedIn.next(true);
+      }  else {
+          this.signedIn.next(false);
       }
-       localStorage.removeItem('access_token');
-  }
+    }
 
-  isSignedIn():boolean {
-    return localStorage.getItem('access_token') !== null;
-  }
 
 }

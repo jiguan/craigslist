@@ -1,4 +1,4 @@
-import { Component} from 'angular2/core';
+import { Component, OnInit } from 'angular2/core';
 import { CategoryService } from '../service/category.service';
 import { UserService } from '../service/user.service';
 import { PostService } from '../service/post.service';
@@ -15,7 +15,6 @@ import { Http } from '../common/http';
 import { SecurityRouterOutlet } from '../router/securityRouter';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
 import {HTTP_PROVIDERS, ConnectionBackend } from 'angular2/http';
-
 
 @Component({
 	selector: 'my-app',
@@ -88,7 +87,13 @@ import {HTTP_PROVIDERS, ConnectionBackend } from 'angular2/http';
 		}
 ])
 export class AppComponent {
-	constructor(private _loginService: LoginService) {}
-	signedIn: boolean = this._loginService.isSignedIn();
+	signedIn: boolean;
+	constructor(private _loginService: LoginService) {
+		this._loginService.signedIn.subscribe(signedIn => {
+		   this.signedIn = signedIn;
+		});
+		this._loginService.refresh();
+	}
+
 	title = 'Tour of Heroes';
 }
