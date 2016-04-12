@@ -1,4 +1,4 @@
-import { Component, OnInit } from 'angular2/core';
+import { Component } from 'angular2/core';
 import { CategoryService } from '../service/category.service';
 import { PostService } from '../service/post.service';
 import { RouteParams, Router } from 'angular2/router';
@@ -14,11 +14,10 @@ import { CreatePostDirective } from '../direct/create-post.directive';
 	 directives: [CreatePostDirective],
 })
 
-export class CategoryDetailComponent implements OnInit {
+export class CategoryDetailComponent {
 	category: Category;
 	posts: Post[];
-	constructor(private _router: Router, private _categoryService: CategoryService, private _postService: PostService, private _routeParams: RouteParams) {}
-	ngOnInit() {
+	constructor(private _router: Router, private _categoryService: CategoryService, private _postService: PostService, private _routeParams: RouteParams) {
 		let id = this._routeParams.get('id');
 		this._categoryService.getCategory(id).subscribe(
 			 data => { this.category = data },

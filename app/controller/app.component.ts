@@ -1,4 +1,4 @@
-import { Component, OnInit } from 'angular2/core';
+import { Component, OnInit, provide } from 'angular2/core';
 import { CategoryService } from '../service/category.service';
 import { UserService } from '../service/user.service';
 import { PostService } from '../service/post.service';
@@ -10,11 +10,11 @@ import { NewPostComponent } from './new-post.component';
 import { RegisterComponent } from './register.component';
 import { DashboardComponent } from './dashboard.component';
 import { LoginComponent } from './login.component';
+import { AuthHttp } from '../common/authHttp';
 import { CategoryDetailComponent } from './category-detail.component';
-import { Http } from '../common/http';
 import { SecurityRouterOutlet } from '../router/securityRouter';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
-import {HTTP_PROVIDERS, ConnectionBackend } from 'angular2/http';
+import {XHRBackend,RequestOptions,HTTP_PROVIDERS, ConnectionBackend } from 'angular2/http';
 
 @Component({
 	selector: 'my-app',
@@ -28,9 +28,10 @@ import {HTTP_PROVIDERS, ConnectionBackend } from 'angular2/http';
 		PostService,
 		UserService,
 		LoginService,
-		WindowService,
-		ConnectionBackend,
-		Http
+		provide(AuthHttp, {
+   	useFactory: (backend: XHRBackend, defaultOptions: RequestOptions) => new AuthHttp(backend, defaultOptions),
+   	deps: [XHRBackend, RequestOptions]
+ 	})
 	]
 })
 @RouteConfig([
@@ -87,7 +88,7 @@ import {HTTP_PROVIDERS, ConnectionBackend } from 'angular2/http';
 		}
 ])
 export class AppComponent {
-	signedIn: boolean;
+	signedIn: boolean = false;
 	constructor(private _loginService: LoginService) {
 		this._loginService.signedIn.subscribe(signedIn => {
 		   this.signedIn = signedIn;

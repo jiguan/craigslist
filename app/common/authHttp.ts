@@ -1,7 +1,7 @@
-//https://github.com/springboot-angular2-tutorial/angular2-app/blob/master/src/app/http/Http.ts
+// https://github.com/springboot-angular2-tutorial/angular2-app/blob/master/src/app/http/Http.ts
 import {Observable} from "rxjs/Observable";
 import {Injectable} from "angular2/core";
-import { Http as NgHttp,  RequestOptionsArgs, RequestOptions,  Headers,  Response, ConnectionBackend} from "angular2/http";
+import { Http, RequestOptionsArgs, RequestOptions, Headers, Response, ConnectionBackend} from "angular2/http";
 
 
 const mergeAuthToken = (options:RequestOptionsArgs) => {
@@ -16,7 +16,7 @@ const mergeAuthToken = (options:RequestOptionsArgs) => {
 };
 
 @Injectable()
-export class Http extends NgHttp {
+export class AuthHttp extends Http {
     constructor(_backend: ConnectionBackend, _defaultOptions: RequestOptions) {
         super(_backend, _defaultOptions);
     }

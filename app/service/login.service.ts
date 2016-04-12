@@ -1,7 +1,6 @@
 import {Injectable} from "angular2/core";
-import {Response, Http} from "angular2/http";
+import {Response, Http, Headers} from "angular2/http";
 import { Observable } from 'rxjs/Observable';
-import {Headers} from 'angular2/http';
 import 'rxjs/add/operator/do'
 import { BehaviorSubject } from 'rxjs/Rx';
 // import {Http} from "../common/http";
@@ -42,6 +41,7 @@ export class LoginService {
    }
 
   logout():Observable<Response> {
+
       return this.http.post('http://localhost:8080/oauth/revoke-token', '')
       .do(
           resp => {
