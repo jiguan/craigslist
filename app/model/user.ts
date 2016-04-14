@@ -1,14 +1,8 @@
 export class User {
   id: string;
   username: string;
-  email: string;
-  publicEmail: boolean;
+  phone: string;
   wechat: string;
-  publicWechat: boolean;
-  role: string;
-}
-
-class Role {
-    id: string;
-    role: string;
+  password: string;
+  roles: Set<string>;
 }

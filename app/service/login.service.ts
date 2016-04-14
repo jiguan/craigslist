@@ -29,9 +29,10 @@ export class LoginService {
       return this.http.post('http://localhost:8080/oauth/token', body, { headers: headers })
       .do(
           resp => {
-               console.log(resp);
-               localStorage.setItem('access_token', resp.json().access_token);
-                this.signedIn.next(true);
+               var json = resp.json();
+               json['timestamp'] = new Date().getTime();
+               localStorage.setItem('auth', JSON.stringify(json));
+               this.signedIn.next(true);
            }
      );
   }
@@ -45,16 +46,19 @@ export class LoginService {
       return this.http.post('http://localhost:8080/oauth/revoke-token', '')
       .do(
           resp => {
-              localStorage.removeItem('access_token');
+              localStorage.removeItem('auth');
               this.signedIn.next(false);
            }
      );
   }
   refresh(): void {
-      if(localStorage.getItem('access_token') !== null) {
+      let auth = JSON.parse(localStorage.getItem('auth'));
+      console.log(auth);
+      if(auth !== null && (new Date().getTime() < auth.timestamp + auth.expires_in*1000)) {
           this.signedIn.next(true);
       }  else {
           this.signedIn.next(false);
+          localStorage.removeItem('auth');
       }
     }
 

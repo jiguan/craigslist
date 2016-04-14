@@ -12,11 +12,28 @@
     </div>
 	<div class="col-sm-3 topnav w3-right-align"> <!-- links -->
 		<a [routerLink]="['Dashboard']">Dashboard</a>
-		<a [routerLink]="['MyPost']">My posts</a>
-		<a *ngIf="signedIn" [routerLink]="['Logout']">Log out</a>
+		<a [routerLink]="['Profile']">My posts</a>
+		<a *ngIf="signedIn" data-toggle="modal" data-target="#logoutDialog">Log out</a>
 		<a *ngIf="!signedIn" [routerLink]="['Login']">Log in</a>
 	</div>
 </div>
  <div id="container" class="center">
   <auth-router-outlet></auth-router-outlet>
+  <div class="modal fade" id="logoutDialog" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Are you sure you want to log out?</h4>
+        </div>
+        <div class="modal-footer">
+				   <button type="button" class="btn btn-default" data-dismiss="modal" (click)="logout()">Yes</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+	  </div>
+
+    </div>
+  </div>
   </div>

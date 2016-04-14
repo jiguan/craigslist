@@ -2,7 +2,7 @@ import {Directive, ElementRef, DynamicComponentLoader} from "angular2/core";
 import {Router, RouterOutlet, ComponentInstruction} from "angular2/router";
 import {makeDecorator} from "angular2/src/core/util/decorators";
 import {reflector} from "angular2/src/core/reflection/reflection";
-import {LoginService} from "../service/login.service";
+import { LoginService } from "../service/login.service";
 // https://github.com/springboot-angular2-tutorial/angular2-app/blob/master/src/app/routes/SecurityRouterOutlet.ts
 @Directive({
   selector: 'auth-router-outlet',
@@ -22,7 +22,7 @@ export class SecurityRouterOutlet extends RouterOutlet {
     const publicPageMeta = reflector.annotations(next.componentType)
       .filter(a => a instanceof PublicPageMetadata)[0];
     if (publicPageMeta) {
-      if (!this.loginService.isSignedIn()) return super.activate(next);
+      if (!this.loginService.signedIn) return super.activate(next);
       if (!publicPageMeta.whenSignedIn) return super.activate(next);
       publicPageMeta.whenSignedIn(this.parentRouter);
       return super.activate(next);
@@ -31,7 +31,7 @@ export class SecurityRouterOutlet extends RouterOutlet {
     const privatePageMeta = reflector.annotations(next.componentType)
       .filter(a => a instanceof PrivatePageMetadata)[0];
     if (privatePageMeta) {
-      if (this.loginService.isSignedIn()) return super.activate(next);
+      if (this.loginService.signedIn) return super.activate(next);
       privatePageMeta.whenNotSignedIn(this.parentRouter);
       return;
     }

@@ -1,6 +1,9 @@
 import {Component} from "angular2/core";
 import {ROUTER_DIRECTIVES, Router} from "angular2/router";
 import {LoginService} from "../service/login.service";
+import {PublicPage} from "../router/securityRouter";
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+
 // https://github.com/springboot-angular2-tutorial/angular2-app/blob/master/src/app/components/login/LoginPage.ts
 
 @Component({
@@ -9,9 +12,12 @@ import {LoginService} from "../service/login.service";
   styleUrls: ['app/view/login.component.css'],
   directives: [ROUTER_DIRECTIVES]
 })
-
+// @PublicPage({
+//   whenSignedIn: (router) => router.navigate(['/Home'])
+// })
 export class LoginComponent {
-  constructor(private router:Router, private loginService: LoginService) {
+
+  constructor(private router:Router, private loginService: LoginService, private toastr: ToastsManager) {
   }
 
   login(email, password) {
@@ -22,27 +28,14 @@ export class LoginComponent {
 
   }
 
-   logout() {
-       this.loginService.logout().
-       subscribe(
-           response => {
-               console.log(response);
-               alert(response);
-           },
-           error => {
-               alert(error);
-           }
-       );
-   }
-
    signup() {
 
    }
 
   handleError(error) {
     switch (error.status) {
-      case 401:
-        console.error('Email or password is wrong.');
+      case 400:
+            this.toastr.warning('Email or password is wrong.');
     }
   }
 

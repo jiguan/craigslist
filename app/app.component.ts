@@ -1,20 +1,21 @@
 import { Component, OnInit, provide } from 'angular2/core';
-import { CategoryService } from '../service/category.service';
-import { UserService } from '../service/user.service';
-import { PostService } from '../service/post.service';
-import { LoginService } from '../service/login.service';
-import { WindowService } from '../service/window.service';
-import { MyPostComponent } from './my-post.component';
-import { PostDetailComponent } from './post-detail.component';
-import { NewPostComponent } from './new-post.component';
-import { RegisterComponent } from './register.component';
-import { DashboardComponent } from './dashboard.component';
-import { LoginComponent } from './login.component';
-import { AuthHttp } from '../common/authHttp';
-import { CategoryDetailComponent } from './category-detail.component';
-import { SecurityRouterOutlet } from '../router/securityRouter';
+import { CategoryService } from './service/category.service';
+import { UserService } from './service/user.service';
+import { PostService } from './service/post.service';
+import { LoginService } from './service/login.service';
+import { WindowService } from './service/window.service';
+import { ProfileComponent } from './controller/profile.component';
+import { PostDetailComponent } from './controller/post-detail.component';
+import { NewPostComponent } from './controller/new-post.component';
+import { RegisterComponent } from './controller/register.component';
+import { DashboardComponent } from './controller/dashboard.component';
+import { LoginComponent } from './controller/login.component';
+import { AuthHttp } from './common/authHttp';
+import { CategoryDetailComponent } from './controller/category-detail.component';
+import { SecurityRouterOutlet } from './router/securityRouter';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
 import {XHRBackend,RequestOptions,HTTP_PROVIDERS, ConnectionBackend } from 'angular2/http';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
 	selector: 'my-app',
@@ -22,6 +23,7 @@ import {XHRBackend,RequestOptions,HTTP_PROVIDERS, ConnectionBackend } from 'angu
 	styleUrls: ['app/view/app.component.css'],
 	directives: [SecurityRouterOutlet, ROUTER_DIRECTIVES],
 	providers: [
+		 ToastsManager,
 		ROUTER_PROVIDERS,
 		HTTP_PROVIDERS,
 		CategoryService,
@@ -57,11 +59,6 @@ import {XHRBackend,RequestOptions,HTTP_PROVIDERS, ConnectionBackend } from 'angu
 			component: LoginComponent,
 		},
 		{
-			path: '/logout',
-			name: 'Logout',
-			component: LoginComponent,
-		},
-		{
 			path: '/category/:id',
 			name: 'CategoryDetail',
 			component: CategoryDetailComponent
@@ -78,8 +75,8 @@ import {XHRBackend,RequestOptions,HTTP_PROVIDERS, ConnectionBackend } from 'angu
 		},
 		{
 			path: '/user/posts',
-			name: 'MyPost',
-			component: MyPostComponent
+			name: 'Profile',
+			component: ProfileComponent
 		},
 		{
 			path: '/user/register',
@@ -89,12 +86,25 @@ import {XHRBackend,RequestOptions,HTTP_PROVIDERS, ConnectionBackend } from 'angu
 ])
 export class AppComponent {
 	signedIn: boolean = false;
-	constructor(private _loginService: LoginService) {
+	constructor(private _loginService: LoginService, private _toastr: ToastsManager) {
 		this._loginService.signedIn.subscribe(signedIn => {
 		   this.signedIn = signedIn;
 		});
 		this._loginService.refresh();
 	}
+	logout() {
+		this._loginService.logout().subscribe(() => {
+		     this._toastr.success('Log out successfully');
+		   }, this.handleError);
+	}
+
 
 	title = 'Tour of Heroes';
+
+	handleError(error) {
+	  switch (error.status) {
+		case 400:
+			  this._toastr.error('Email or password is wrong.');
+	  }
+	}
 }
