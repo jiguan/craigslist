@@ -16,7 +16,6 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 //   whenSignedIn: (router) => router.navigate(['/Home'])
 // })
 export class LoginComponent {
-
   constructor(private router:Router, private loginService: LoginService, private toastr: ToastsManager) {
   }
 
@@ -24,7 +23,7 @@ export class LoginComponent {
     this.loginService.login(email, password)
     .subscribe(() => {
      this.router.navigate(['/Home']);
-   }, this.handleError);
+ }, err => this.handleError(err));
 
   }
 
