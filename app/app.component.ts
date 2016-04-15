@@ -6,7 +6,7 @@ import { LoginService } from './service/login.service';
 import { WindowService } from './service/window.service';
 import { ProfileComponent } from './controller/profile.component';
 import { PostDetailComponent } from './controller/post-detail.component';
-import { NewPostComponent } from './controller/new-post.component';
+import { PostEditComponent } from './controller/post-edit.component';
 import { RegisterComponent } from './controller/register.component';
 import { DashboardComponent } from './controller/dashboard.component';
 import { LoginComponent } from './controller/login.component';
@@ -65,8 +65,8 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 		},
 		{
 			path: '/post',
-			name: 'NewPost',
-			component: NewPostComponent
+			name: 'PostEdit',
+			component: PostEditComponent
 		},
 		{
 			path: '/post/:id',

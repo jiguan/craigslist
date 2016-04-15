@@ -34,7 +34,7 @@ export class CategoryDetailComponent {
 		this._router.navigate(link);
 	}
 	createPostUnder(category: Category) {
-		let link = ['NewPost', { categoryId: category.id }];
+		let link = ['PostEdit', { categoryId: category.id }];
 		this._router.navigate(link);
 	}
 	goBack() {

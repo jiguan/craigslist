@@ -1,15 +1,15 @@
 import {Injectable} from 'angular2/core';
-import { POSTS } from '../model/mock-post-car';
 import { COMMENTS } from '../model/mock-comment';
 import { Post } from '../model/post';
 import {Response} from 'angular2/http';
 import {AuthHttp} from '../common/authHttp';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class PostService {
 	constructor(private http:AuthHttp) { }
 	getPostsUnder(categoryId: string) {
-		return this.http.get('http://localhost:8080/api/category/'+categoryId+'/posts/')
+		return this.http.get('http://localhost:8080/api/category/'+categoryId+'/posts')
 	    .map(res => res.json());
 	}
 	getPost(id: string) {
@@ -17,8 +17,12 @@ export class PostService {
 	    .map(res => res.json());
 	}
 
+	savePost(post: Post): Observable<Post> {
+		return this.http.post('http://localhost:8080/api/post/new', JSON.stringify(post)).map(resp => resp.json());
+	}
+
 	getPostsOfUser(userId: string) {
-		return Promise.resolve(POSTS);
+		// return Promise.resolve(POSTS);
 	}
 
 	getCommentsOfPost(id: string) {
