@@ -2,5 +2,7 @@ export class Post {
   id: string;
   title = "";
   detail = "";
-  category: string;
+  categoryId: string;
+  username: string;
+  timestamp: Date;
 }

@@ -53,7 +53,6 @@ export class LoginService {
   }
   refresh(): void {
       let auth = JSON.parse(localStorage.getItem('auth'));
-      console.log(auth);
       if(auth !== null && (new Date().getTime() < auth.timestamp + auth.expires_in*1000)) {
           this.signedIn.next(true);
       }  else {

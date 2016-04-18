@@ -5,7 +5,7 @@ import { RouteParams, Router } from 'angular2/router';
 import { Category } from '../model/category';
 import { Post } from '../model/post';
 import { CreatePostDirective } from '../direct/create-post.directive';
-
+import { BehaviorSubject } from 'rxjs/Rx';
 
 @Component({
 	selector: 'category-detail',
@@ -24,7 +24,7 @@ export class CategoryDetailComponent {
 			 err => console.error(err)
 		 );
 
-		this._postService.getPostsUnder(id).subscribe(
+		this._postService.getPostsUnderCategory(id).subscribe(
 			 data => { this.posts = data },
 			 err => console.error(err)
 		 );

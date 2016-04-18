@@ -18,7 +18,7 @@ export class PostEditComponent {
 			 );
 		} else {
 			this.post = new Post();
-			this.post.category = this._routeParams.get('categoryId');
+			this.post.categoryId = this._routeParams.get('categoryId');
 		}
 	}
 	savePost() {
@@ -26,7 +26,7 @@ export class PostEditComponent {
 			data => { this.post = data },
    		 	err => console.error(err)
 		);
-		let link = ['CategoryDetail', { id: this.post.category }];
+		let link = ['CategoryDetail', { id: this.post.categoryId }];
 		this._router.navigate(link);
 	}
 	goBack() {
