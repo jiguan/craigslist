@@ -24,8 +24,12 @@ export class PostService {
 		return this.http.post('http://localhost:8080/api/post/new', JSON.stringify(post)).map(resp => resp.json());
 	}
 
+	addComment(comment: Comment): Observable<Comment> {
+		return this.http.post('http://localhost:8080/api/post/comment/new', JSON.stringify(comment)).map(resp => resp.json());
+	}
+
 	getPostsOfUser(userId: string):Observable<Post[]> {
-		let username = this.userService.getCurrentUsername();
+		let username = this.userService.getCurrentUser().username;
 		return this.http.get('http://localhost:8080/api/user/'+username+'/posts')
 		.map(resp => resp.json());
 	}

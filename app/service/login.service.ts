@@ -1,7 +1,9 @@
 import {Injectable} from "angular2/core";
 import {Response, Http, Headers} from "angular2/http";
 import { Observable } from 'rxjs/Observable';
+import { UserService } from '../service/user.service';
 import 'rxjs/add/operator/do'
+import { User } from '../model/user';
 import { BehaviorSubject } from 'rxjs/Rx';
 // import {Http} from "../common/http";
 
@@ -12,12 +14,12 @@ export class LoginService {
 
   public signedIn: BehaviorSubject<boolean> =  new BehaviorSubject<boolean>(false);
 
-  constructor(private http:Http) {
+  constructor(private http:Http, private userService: UserService) {
   }
 
 
 
-  login(username, password): Observable<Response> {
+  login(username, password): Observable<User> {
       var clientId = 'clientapp';
       var clientSecret = '123456';
       var creds = this.createAuthorizationHeader(clientId, clientSecret);
@@ -34,7 +36,9 @@ export class LoginService {
                localStorage.setItem('auth', JSON.stringify(json));
                this.signedIn.next(true);
            }
-     );
+     )
+     .flatMap(() => this.userService.loadProfile())
+     ;
   }
 
   createAuthorizationHeader(username, password): string {

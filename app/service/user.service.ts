@@ -1,28 +1,31 @@
-import {Injectable} from 'angular2/core';
+import {Injectable, OnInit} from 'angular2/core';
 import {AuthHttp} from '../common/authHttp';
 import { Observable } from 'rxjs/Observable';
 import {User} from '../model/user';
 
 @Injectable()
 export class UserService {
-	user: User;
+	private user: User;
 
-	constructor(private http:AuthHttp) { }
-	getProfile():Observable<User>  {
+	constructor(private http:AuthHttp) {}
+
+	public loadProfile(): Observable<User> {
 		return this.http.get('http://localhost:8080/api/user/profile')
-		.map(res => res.json()).do(
-				user => {
-					this.user = user;
-				}
-		);
-
+		.map(res => res.json())
+		.do (
+   			user => {
+				this.user = user;
+				console.log("set user");
+				console.log(user);
+			}
+   		);
 	}
 
-	getCurrentUsername(): string {
-		return this.user.username;
+	public getCurrentUser(): User {
+		return this.user;
 	}
 
-	getRole():Set<string> {
-		return this.user.roles;
+	public isPoster():boolean {
+		return this.user.roles.has('POSTER');
 	}
 }

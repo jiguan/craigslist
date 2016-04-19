@@ -11,15 +11,12 @@ import { UserService } from '../service/user.service';
 	// styleUrls: ['app/view/categories.component.css']
 })
 export class ProfileComponent {
-	user: User
-	constructor(private _router: Router, private _userService: UserService) {
-		this._userService.getProfile().subscribe(
-			 data => { this.user = data;
-			 this.diagnostic = JSON.stringify(data);
-		  },
-			 err => console.error(err)
-		 );
-	  }
+
+	getUser(): User {
+		return this._userService.getCurrentUser();
+	}
+
+	constructor(private _router: Router, private _userService: UserService) {	  }
 	diagnostic: string;
 
 }

@@ -7,17 +7,18 @@
                 <div>
                 {{comment.comment}}
                 </div>
-                <div> By {{comment.user}} </div>
+                <div> By {{comment.user.username}} </div>
             </li>
         </ul>
    </div>
 
    <button class="btn btn-default" (click)="isCollapsed = !isCollapsed">Add a comment</button>
+   <button class="btn btn-default" (click)="editPost(post)">Edit</button>
    <button class="btn btn-default" (click)="goBack()">Back</button>
-   <form (ngSubmit)="addComment()" [collapse]="isCollapsed" class="form-control collapse my-form">
+   <form (ngSubmit)="addComment(comm)" [collapse]="isCollapsed" class="form-control collapse my-form">
        <div class="form-group">
          <label for="alterEgo">Comment: </label>
-         <input type="text" class="form-control" [(ngModel)]="model.comment">
+         <input type="text" class="form-control" [(ngModel)]="comm">
        </div>
       <button type="submit" class="btn btn-default">
           <span class="glyphicon glyphicon-ok"></span> Submit

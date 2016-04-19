@@ -1,5 +1,6 @@
 import { Component, OnInit } from 'angular2/core';
 import { PostService } from '../service/post.service';
+import { UserService } from '../service/user.service';
 import { RouteParams } from 'angular2/router';
 import { Post } from '../model/post';
 import { Collapse } from '../direct/collapse';
@@ -13,15 +14,12 @@ import { CreateCommentDirective } from '../direct/create-comment.directive';
 	directives: [CreateCommentDirective, Collapse],
 })
 
-export class PostDetailComponent implements OnInit {
+export class PostDetailComponent {
 	post: Post;
 	comments: Comment[];
-	model: Comment;
 	public isCollapsed:boolean = true;
-	constructor(private _postService: PostService, private _routeParams: RouteParams) {}
-	ngOnInit() {
+	constructor(private _postService: PostService, private _routeParams: RouteParams, private _userService: UserService) {
 		let id = this._routeParams.get('id');
-		this.model = new Comment(id, 'unknown');
 		this._postService.getPost(id).subscribe(
 			 data => { this.post = data },
 			 err => console.error(err)
@@ -30,14 +28,15 @@ export class PostDetailComponent implements OnInit {
 			 data => { this.comments = data },
 			 err => console.error(err)
 		 );
+
 	}
-	addComment() {
+	addComment(comm: string) {
 		this.isCollapsed = true;
-		var newComment = new Comment(this.model.id, this.model.userId);
-		newComment.comment = this.model.comment;
+		var newComment = new Comment(this.post.id, this._userService.getCurrentUser());
+		newComment.comment = comm;
 		this.comments.push(newComment);
-		this.model.comment = '';
 	}
+
 	goBack() {
 		window.history.back();
 	}

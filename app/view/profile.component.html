@@ -1,5 +1,4 @@
 <h1>Profile</h1>
-<div *ngIf="user">
-<p>User: {{user.name}}</p>
+<div *ngIf="getUser()">
+<p>User: {{getUser() | json}}</p>
 </div>
-{{diagnostic}}

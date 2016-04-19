@@ -21,7 +21,8 @@ export class LoginComponent {
 
   login(email, password) {
     this.loginService.login(email, password)
-    .subscribe(() => {
+    .subscribe(user => {
+        console.log(user);
      this.router.navigate(['/Home']);
  }, err => this.handleError(err));
 

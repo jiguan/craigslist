@@ -1,11 +1,13 @@
+import {User} from '../user';
+
 export class Comment {
   id: string;
   comment: string;
   postId: string;
-  userId: string;
+  user: User;
 
-  public constructor(postId: string, public userId: string) {
+  public constructor(postId: string, public user: User) {
       this.postId = postId;
-      this.userId = userId;
+      this.user = user;
   }
 }

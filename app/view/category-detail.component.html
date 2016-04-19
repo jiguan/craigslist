@@ -1,10 +1,5 @@
 <div *ngIf="category">
-	 <h2>{{category.name}} details!</h2>
-	 <div><label>id: </label>{{category.id}}</div>
-	 <div>
-	 	<label>name: </label>
-	 	<input [(ngModel)]="category.name" placeholder="name" />
-	 </div>
+	 <h2>{{category.name}}</h2>
 	 <div>
 		 <ul class="posts list-group">
 			 <li *ngFor="#post of posts" (click)="gotoPost(post)" class="list-group-item" >
