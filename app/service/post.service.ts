@@ -27,6 +27,9 @@ export class PostService {
 			return this.http.post('http://localhost:8080/api/post/new', JSON.stringify(post)).map(resp => resp.json());
 		}
 	}
+	deletePost(post: Post): Observable<Response> {
+		return this.http.delete('http://localhost:8080/api/post/'+post.id);
+	}
 
 	addComment(comment: Comment): Observable<Comment> {
 		return this.http.post('http://localhost:8080/api/post/comment/new', JSON.stringify(comment)).map(resp => resp.json());

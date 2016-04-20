@@ -6,6 +6,7 @@ import { Post } from '../model/post';
 import { Collapse } from '../direct/collapse';
 import { Comment } from '../model/comment';
 import { CreateCommentDirective } from '../direct/create-comment.directive';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
 	selector: 'post-detail',
@@ -18,7 +19,7 @@ export class PostDetailComponent {
 	post: Post;
 	comments: Comment[];
 	public isCollapsed:boolean = true;
-	constructor(private _router: Router, private _postService: PostService, private _routeParams: RouteParams, private _userService: UserService) {
+	constructor(private _router: Router, private _postService: PostService, private _routeParams: RouteParams, private _userService: UserService, private _toastr: ToastsManager) {
 		let id = this._routeParams.get('id');
 		this._postService.getPost(id).subscribe(
 			 data => { this.post = data },
@@ -40,11 +41,25 @@ export class PostDetailComponent {
 		newComment.comment = comm;
 		this.comments.push(newComment);
 	}
-	editPost(post: Post) {
-		let link = ['PostEdit', { id: post.id }];
+	editPost() {
+		let link = ['PostEdit', { id: this.post.id }];
 		this._router.navigate(link);
 	}
+	deletePost() {
+		this._postService.deletePost(this.post).subscribe(
+			() => {
+				let link = ['CategoryDetail', { id: this.post.categoryId }];
+				this._router.navigate(link);
+				this._toastr.success('Delete post successfully');
+			}, err => this.handleError(err)
+		);
+	}
+
 	goBack() {
 		window.history.back();
+	}
+
+	handleError(error) {
+		this._toastr.error(error);
 	}
 }

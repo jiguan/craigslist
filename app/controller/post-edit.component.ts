@@ -4,7 +4,8 @@ import { Post } from '../model/post';
 import { PostService } from '../service/post.service';
 
 @Component({
-	templateUrl: 'app/view/post-edit.component.html'
+	templateUrl: 'app/view/post-edit.component.html',
+	    styleUrls: ['app/view/post-edit.component.css'],
 })
 
 export class PostEditComponent {
@@ -28,6 +29,7 @@ export class PostEditComponent {
 		let link = ['CategoryDetail', { id: this.post.categoryId }];
 		this._router.navigate(link);
 	}
+
 	goBack() {
 		window.history.back();
 	}
