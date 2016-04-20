@@ -21,7 +21,11 @@ export class PostService {
 	}
 
 	savePost(post: Post): Observable<Post> {
-		return this.http.post('http://localhost:8080/api/post/new', JSON.stringify(post)).map(resp => resp.json());
+		if(post.id!==null) {
+			return this.http.put('http://localhost:8080/api/post/'+post.id, JSON.stringify(post)).map(resp => resp.json());
+		} else {
+			return this.http.post('http://localhost:8080/api/post/new', JSON.stringify(post)).map(resp => resp.json());
+		}
 	}
 
 	addComment(comment: Comment): Observable<Comment> {

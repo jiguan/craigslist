@@ -1,4 +1,31 @@
 <h1>Profile</h1>
 <div *ngIf="getUser()">
 <p>User: {{getUser() | json}}</p>
+
+<table class="table">
+
+     <tr>
+        <td class="col-md-4 "><img id="profile" src="https://thecommunitycorps.secure.force.com/volunteers/resource/1459911004000/application_css/images/default-profile-pic.jpg"/></td>
+        <td id="username" class="col-md-8">User name {{user.username}}</td>
+    </tr>
+    <tr>
+        <td class="col-md-4 text-right">Password</td>
+        <td class="col-md-8"><button class="btn btn-default" (click)="changePassword()">Change</button></td>
+    </tr>
+    <tr>
+        <td class="col-md-4 text-right">WeChat</td>
+        <td class="col-md-8">{{user.wechat}}</td>
+    </tr>
+    <tr>
+        <td class="col-md-4 text-right">Phone</td>
+        <td class="col-md-8">{{user.phone}}</td>
+    </tr>
+    <tr>
+        <td class="col-sm-4 text-right">Roles</td>
+        <td>
+            <input type="text" name="cities" class="form-control"
+                   value="Admin" data-role="tagsinput" />
+               </td>
+    </tr>
+</table>
 </div>

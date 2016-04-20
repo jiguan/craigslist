@@ -9,3 +9,7 @@ textarea {
 .comments {
     width: 90%;
 }
+
+#addComment {
+    width: 70%;
+}

@@ -1,0 +1,22 @@
+.text-right {
+    font-size: large;
+    line-height: 34px;
+}
+
+#username {
+    font-size: large;
+    line-height:80px;
+}
+
+
+#profile {
+    display:block;
+    height: 80px;
+    width: 80px;
+    float: right;
+}
+
+.table td {
+    border: none;
+    padding-right: 30px;
+}

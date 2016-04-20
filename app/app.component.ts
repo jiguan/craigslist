@@ -3,7 +3,6 @@ import { CategoryService } from './service/category.service';
 import { UserService } from './service/user.service';
 import { PostService } from './service/post.service';
 import { LoginService } from './service/login.service';
-import { WindowService } from './service/window.service';
 import { ProfileComponent } from './controller/profile.component';
 import { PostDetailComponent } from './controller/post-detail.component';
 import { PostEditComponent } from './controller/post-edit.component';
@@ -93,9 +92,13 @@ export class AppComponent {
 		this._loginService.refresh();
 	}
 	logout() {
-		this._loginService.logout().subscribe(() => {
-		     this._toastr.success('Log out successfully');
-		   }, this.handleError);
+		this._loginService.logout();
+		if(!this.signedIn) {
+			this._toastr.success('Log out successfully');
+		} else {
+			alert('nn');
+		}
+
 	}
 
 

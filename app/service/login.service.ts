@@ -45,15 +45,9 @@ export class LoginService {
       return btoa(username+':'+password);
    }
 
-  logout():Observable<Response> {
-
-      return this.http.post('http://localhost:8080/oauth/revoke-token', '')
-      .do(
-          resp => {
-              localStorage.removeItem('auth');
-              this.signedIn.next(false);
-           }
-     );
+  logout():void {
+          localStorage.removeItem('auth');
+          this.signedIn.next(false);
   }
   refresh(): void {
       let auth = JSON.parse(localStorage.getItem('auth'));

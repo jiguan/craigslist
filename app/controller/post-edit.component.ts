@@ -8,8 +8,8 @@ import { PostService } from '../service/post.service';
 })
 
 export class PostEditComponent {
-	post: Post;
-	constructor(private _router: Router, private _routeParams: RouteParams, private _postService: PostService) {
+	post: Post = new Post();
+		constructor(private _router: Router, private _routeParams: RouteParams, private _postService: PostService) {
 		let id = this._routeParams.get('id');
 		if(id!==null) {
 			this._postService.getPost(id).subscribe(
@@ -17,7 +17,6 @@ export class PostEditComponent {
 				 err => console.error(err)
 			 );
 		} else {
-			this.post = new Post();
 			this.post.categoryId = this._routeParams.get('categoryId');
 		}
 	}
