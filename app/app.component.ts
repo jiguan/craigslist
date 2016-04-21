@@ -16,13 +16,14 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/route
 import {XHRBackend,RequestOptions,HTTP_PROVIDERS, ConnectionBackend } from 'angular2/http';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
+
 @Component({
 	selector: 'my-app',
 	templateUrl: 'app/view/app.component.html',
 	styleUrls: ['app/view/app.component.css'],
 	directives: [SecurityRouterOutlet, ROUTER_DIRECTIVES],
 	providers: [
-		 ToastsManager,
+		ToastsManager,
 		ROUTER_PROVIDERS,
 		HTTP_PROVIDERS,
 		CategoryService,

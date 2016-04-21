@@ -18,12 +18,14 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
-    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script src="node_modules/systemjs/dist/system.js"></script>
+    <script src="node_modules/ng2-toastr/bundles/ng2-toastr.min.js"></script>
+
     <script src="node_modules/rxjs/bundles/Rx.js"></script>
     <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
     <script src="node_modules/angular2/bundles/router.dev.js"></script>
     <script src="node_modules/angular2/bundles/http.dev.js"></script>
-    <script src="node_modules/ng2-toastr/bundles/ng2-toastr.min.js"></script>
+
     <!-- 2. Configure SystemJS -->
     <script>
       System.config({
@@ -31,13 +33,20 @@
           app: {
             format: 'register',
             defaultExtension: 'js'
-          }
-        }
+        },
+        'ng2-file-upload': { "defaultExtension": "js" }
+        },
+      map: {
+           "ng2-file-upload": "node_modules/ng2-file-upload"
+         }
       });
       System.import('app/main')
             .then(null, console.error.bind(console));
     </script>
-
+    <!-- <script src="node_modules/rxjs/bundles/Rx.js"></script>
+    <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
+    <script src="node_modules/angular2/bundles/router.dev.js"></script>
+    <script src="node_modules/angular2/bundles/http.dev.js"></script> -->
   </head>
 
   <!-- 3. Display the application -->
