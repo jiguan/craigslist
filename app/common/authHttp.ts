@@ -11,7 +11,9 @@ const mergeAuthToken = (options:RequestOptionsArgs) => {
   let auth = JSON.parse(localStorage.getItem('auth'));
   if(auth!==null) {
       let access_token = auth.access_token;
-      newHeaders.set('Authorization', auth.token_type+' '+ access_token);
+      let token = auth.token_type+' '+ access_token;
+      localStorage.setItem('token', token);
+      newHeaders.set('Authorization', token);
       newHeaders.set('Accept', 'application/json');
       newHeaders.set('Content-Type', 'application/json');
   }

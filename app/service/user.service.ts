@@ -10,7 +10,7 @@ export class UserService {
 	constructor(private http:AuthHttp) {}
 
 	public loadProfile(): Observable<User> {
-		return this.http.get('http://localhost:8080/api/user/profile')
+		return this.http.get('http://localhost:8080/api/user')
 		.map(res => res.json())
 		.do (
    			user => {

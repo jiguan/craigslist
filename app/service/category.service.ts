@@ -13,7 +13,7 @@ export class CategoryService {
 	constructor(private http:AuthHttp) {
 	}
 	getCategories():Observable<Category[]>  {
-	    return this.http.get('http://localhost:8080/api/category/all').map(res => res.json());
+	    return this.http.get('http://localhost:8080/api/category').map(res => res.json());
 	}
 
 	getCategory(id: string):Observable<Category> {
